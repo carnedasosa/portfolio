@@ -1,0 +1,15 @@
+Metti qui gli screenshot dei lavori, con questi nomi esatti (JPG, circa 1600x1000):
+
+okay-bari.jpg
+sovranaturale.jpg
+esco.jpg
+gestionale-daniel-sushi.jpg
+hera.jpg
+bottega-pasticcera.jpg
+daniel-sushi.jpg
+crelugia.jpg
+wine-life.jpg
+webmotion.jpg
+alessio.jpg  (foto verticale 4:5)
+
+Appena un file c e, il sito lo mostra al posto del segnaposto.

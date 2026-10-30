@@ -100,6 +100,15 @@
     (function loop() { px += (tx - px) * .14; py += (ty - py) * .14; peek.style.left = px + 'px'; peek.style.top = py + 'px'; requestAnimationFrame(loop); })();
   }
 
+  /* ---------- Carosello dei progetti su telefono: contatore e barra ---------- */
+  const cases = $('.cases'), caseN = $('#case-n'), caseBar = $('.cases-bar i');
+  cases.addEventListener('scroll', () => {
+    const cards = $$('.case', cases), step = cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : 1;
+    const i = Math.min(cards.length - 1, Math.round(cases.scrollLeft / step));
+    caseN.textContent = String(i + 1).padStart(2, '0');
+    caseBar.style.transform = `translateX(${i * 100}%)`;
+  }, { passive: true });
+
   /* ---------- Menu mobile ---------- */
   const menu = $('#menu'), menuBtn = $('.menu-btn');
   function apriMenu(on) {
@@ -186,7 +195,13 @@
         scrollTrigger: { trigger: cards[i + 1], start: 'top 75%', end: () => 'top ' + (88 + (i + 1) * 14) + 'px', scrub: true } });
     });
   });
-  $$('.shot').forEach((s) => gsap.from(s, { y: 80, rotateX: 14, opacity: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: s, start: 'top 88%' } }));
+  mm.add('(min-width: 861px)', () => {
+    $$('.shot').forEach((s) => gsap.from(s, { y: 80, rotateX: 14, opacity: 0, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: s, start: 'top 88%' } }));
+  });
+  // Su telefono le card del carosello entrano da destra, una dopo l'altra
+  mm.add('(max-width: 860px)', () => {
+    gsap.from('.case', { x: 120, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.cases', start: 'top 85%' } });
+  });
 
   /* ---------- Marquee con velocità ---------- */
   const traccia = $('.marquee .traccia'), gruppo = $('.marquee .gruppo');
